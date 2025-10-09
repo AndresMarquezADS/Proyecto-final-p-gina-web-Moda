@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>MEDIA+LOOP</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" href="img/apple-icon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/templatemo.css">
+    <link rel="stylesheet" href="css/custom.css">
+
+    <!-- Load fonts style after rendering the layout styles -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
+    <link rel="stylesheet" href="css/fontawesome.min.css">
+</head>
+
+<body>
+    <!-- Contenedor para cargar la barra de menú usando JavaScript -->
+    <div id="menu"></div>
+    <!-- Modal -->
+    <div class="modal fade bg-white" id="templatemo_search" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="w-100 pt-1 mb-5 text-right">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="" method="get" class="modal-content modal-body border-0 p-0">
+                <div class="input-group mb-2">
+                    <input type="text" class="form-control" id="inputModalSearch" name="q" placeholder="Search ...">
+                    <button type="submit" class="input-group-text bg-success text-light">
+                        <i class="fa fa-fw fa-search text-white"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <section class="bg-success py-5">
+        <div class="container">
+
+            <!-- Fila SOLO para el título -->
+            <div class="row">
+
+            </div>
+
+            <!-- Fila para las tres columnas -->
+            <div class="row align-items-start py-5">
+
+                <div class="col-12 text-center">
+                    <h4>Nuestra Misión:</h4>
+                    <p>
+                        Ayudamos a negocios locales y productos artesanales a crecer en el mundo digital mediante
+                        estrategias
+                        integrales de marketing que combinan optimización de perfiles, creación de contenido coherente
+                        con
+                        su marca y administración profesional de campañas publicitarias.
+                    </p>
+                    <p>
+                        Nuestro propósito es brindar soluciones accesibles y efectivas que permitan a los emprendedores
+                        y
+                        pequeñas empresas competir en igualdad de condiciones con negocios más grandes, aprovechando el
+                        poder
+                        de las plataformas digitales. Creemos firmemente que cada negocio, sin importar su tamaño, tiene
+                        una
+                        historia única que merece ser contada y compartida con el mundo.
+                    </p>
+                    <p>
+                        Nos especializamos en transformar la presencia digital de pequeñas y medianas empresas,
+                        conectándolas
+                        con su público objetivo de manera efectiva, cercana y rentable. Buscamos que cada acción se
+                        traduzca
+                        en resultados tangibles: más clientes, mayor visibilidad y crecimiento sostenible.
+                    </p>
+
+                    <br><br>
+
+                    <h4>Visión:</h4>
+                    <p>
+                        Ser el aliado estratégico preferido por negocios locales en Latinoamérica para su crecimiento
+                        digital,
+                        posicionándonos como expertos en marketing integral que no solo ejecutan campañas publicitarias,
+                        sino
+                        que construyen marcas sólidas desde la base.
+                    </p>
+                    <p>
+                        Nuestra visión a largo plazo es convertirnos en una referencia de confianza en el sector
+                        digital,
+                        acompañando a nuestros clientes en cada etapa de su evolución. Queremos ser reconocidos por
+                        nuestra
+                        cercanía, innovación y la capacidad de generar experiencias digitales que realmente marquen la
+                        diferencia.
+                    </p>
+                    <p>
+                        Aspiramos a que cada empresa que trabaje con nosotros no solo logre vender más, sino que
+                        desarrolle
+                        una identidad fuerte, memorable y sostenible en el tiempo, creando vínculos duraderos con sus
+                        clientes
+                        y comunidades.
+                    </p>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Close Banner -->
+
+
+
+
+    <script>
+        const carrusel_inner = document.querySelector(".carousel-inner");
+        elementos_carrusel.forEach((elemento, indice) => {
+            const divItem = document.createElement("div");
+            divItem.classList.add("carousel-item");
+            if (indice === 0) {
+                divItem.classList.add("active");
+            }
+
+            divItem.innerHTML = `
+                <div class="container">
+                    <div class="row p-5">
+                        <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+                            <img class="img-fluid" src="${elemento.imagen}" alt="">
+                        </div>
+                        <div class="col-lg-6 mb-0 d-flex align-items-center">
+                            <div class="text-align  left align-self-center">
+                                <h1 class="h1 text-success"><b>${elemento.nombre}</b></h1>
+                                <p>
+                                    ${elemento.descripcion}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            carrusel_inner.appendChild(divItem);
+        });
+
+    </script>
+
+
+
+    <!-- Contenido de la página - Inicio  -->
+    <!-- Contenido de la página - Final  -->
+    <!-- Contenedor para cargar el pie de página usando JavaScript -->
+    <div id="pie"></div>
+
+    <!-- Start Script -->
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="js/jquery-migrate-1.2.1.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/templatemo.js"></script>
+    <script src="js/custom.js"></script>
+    <!-- End Script -->
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            cargarFragmento("menu", "menu.html");
+            cargarFragmento("pie", "pie.html");
+        }); 
+    </script>
+
+</body>
+
+</html>
