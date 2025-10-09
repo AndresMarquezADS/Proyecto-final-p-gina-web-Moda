@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>MEDIA+LOOP</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" href="img/apple-icon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/templatemo.css">
+    <link rel="stylesheet" href="css/custom.css">
+
+    <!-- Load fonts style after rendering the layout styles -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
+    <link rel="stylesheet" href="css/fontawesome.min.css">
+</head>
+
+<body>
+
+
+
+
+    <!-- Contenedor para cargar la barra de menú usando JavaScript -->
+    <div id="menu"></div>
+
+    <!-- Contenido de la página - Inicio  -->
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h3 class="card-title mb-4">Datos de Pago</h3>
+
+                        <form id="formPago">
+                            <div class="mb-3">
+                                <label for="numeroTarjeta" class="form-label">Número de Tarjeta</label>
+                                <input type="text" class="form-control" id="numeroTarjeta"
+                                    placeholder="1234 5678 9012 3456" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="fechaExp" class="form-label">Fecha de Expiración (MM/AA)</label>
+                                <input type="text" class="form-control" id="fechaExp" placeholder="MM/AA" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="cvc" class="form-label">CVC</label>
+                                <input type="text" class="form-control" id="cvc" placeholder="123" required>
+                            </div>
+
+                            <button type="submit" class="btn btn-success btn-lg px-3 w-100">Pagar</button>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mostrar total dinámico -->
+    <div class="alert alert-light text-center" role="alert">
+        Valor a cancelar: $<b id="etiqueta_total">0</b>
+    </div>
+
+
+    <script>
+
+        // Recuperar carrito desde localStorage
+        function obtenerCarrito() {
+            const str = localStorage.getItem("carrito");
+            return str ? JSON.parse(str) : [];
+        }
+
+        const carrito = obtenerCarrito();
+        let total = carrito.reduce((suma, item) => suma + Number(item.precio), 0);
+
+        // Mostrar total en el HTML
+        document.getElementById("etiqueta_total").innerText = total.toLocaleString("es-CO");
+
+
+    </script>
+
+
+    <script>
+
+        // Simulación de pago
+        document.getElementById("formPago").addEventListener("submit", function (e) {
+            e.preventDefault(); // Evita recargar la página
+
+            alert("Pago procesado con éxito. ¡Gracias por tu compra!");
+
+            // Vaciar carrito después del pago
+            localStorage.removeItem("carrito");
+
+            // Redirigir (opcional)
+            window.location.href = "index.html";
+        });
+
+
+    </script>
+
+    <!-- Contenido de la página - Final  -->
+    <!-- Contenedor para cargar el pie de página usando JavaScript -->
+    <div id="pie"></div>
+
+    <!-- Start Script -->
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="js/jquery-migrate-1.2.1.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/templatemo.js"></script>
+    <script src="js/custom.js"></script>
+    <!-- End Script -->
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            cargarFragmento("menu", "menu.html");
+            cargarFragmento("pie", "pie.html");
+        }); 
+    </script>
+
+</body>
+
+</html>

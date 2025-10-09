@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>MEDIA+LOOP</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" href="img/apple-icon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/templatemo.css">
+    <link rel="stylesheet" href="css/custom.css">
+
+    <!-- Load fonts style after rendering the layout styles -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
+    <link rel="stylesheet" href="css/fontawesome.min.css">
+
+    <!-- Primero carga la base de datos -->
+    <script src="basedatos/datos.js"></script>
+    <!-- Después el archivo que usa esa base -->
+    <script src="basedatos/consultas.js"></script>
+
+
+
+
+</head>
+
+<body>
+
+    <!-- Contenedor para cargar la barra de menú usando JavaScript -->
+    <div id="menu"></div>
+
+    <!-- Contenido de la página - Inicio -->
+    <section id="etiqueta_detalle_servicio" class="bg-light">
+        <div class="container pb-5">
+            <div class="row">
+                <div class="col-lg-5 mt-5">
+                    <div class="card mb-3">
+                        <img class="card-img img-fluid" src="assets/img/product_single_10.jpg" alt="Card image cap"
+                            id="service-detail">
+                    </div>
+                </div>
+                <!-- col end -->
+                <div class="col-lg-7 mt-5">
+                    <div class="card">
+                        <div class="card-body">
+                            <h1 class="h2" id="nombre-servicio">Active Wear</h1>
+                            <p class="h3 py-2" id="costo-servicio">$25.00</p>
+                            <p class="py-2" id="clasificacion-servicio">
+                                <i class="fa fa-star text-warning"></i>
+                                <i class="fa fa-star text-warning"></i>
+                                <i class="fa fa-star text-warning"></i>
+                                <i class="fa fa-star text-warning"></i>
+                                <i class="fa fa-star text-secondary"></i>
+
+                            </p>
+
+                            <h6>Descripción:</h6>
+                            <p id="descripcion-servicio"></p>
+
+                            <h6>Qué incluye:</h6>
+                            <ul class="list-pb-3" id="contenido-servicio">
+
+                            </ul>
+                            <form action="" method="GET">
+                                <input type="hidden" name="product-title" value="Activewear">
+                                <div class="row pb-3">
+                                    <div class="col d-grid">
+                                        <button id="agregar_servicio" type="button"
+                                            class="btn btn-success btn-lg">Agregar al Carrito</button>
+
+                                    </div>
+                                    <div class="col d-grid">
+                                        <button type="button" class="btn btn-success btn-lg"
+                                            onclick="window.history.back()">Regresar</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Obtener el parámetro de la URL (SOLO UNA VEZ)
+        const urlParams = new URLSearchParams(window.location.search);
+        const codigo_servicio = urlParams.get('codigo_servicio');
+
+        // Buscar el servicio en la lista de servicios
+        const servicio = obtenerServicioPorCodigo(codigo_servicio);
+
+        if (servicio) {
+            // Asignar valores en la vista de detalle
+            document.getElementById("service-detail").src = servicio.imagen;
+            document.getElementById("nombre-servicio").innerText = servicio.nombre;
+            document.getElementById("costo-servicio").innerText = `$${servicio.precio.toLocaleString("es-CO")}`;
+            document.getElementById("descripcion-servicio").innerText = servicio.descripcion;
+            document.getElementById("contenido-servicio").innerHTML = servicio.contenido.map(item => `<li>${item}</li>`).join('');
+
+            document.getElementById('agregar_servicio').addEventListener('click', function () {
+                agregarServicio(servicio, false);
+                window.history.back();
+            });
+
+        }
+
+    </script>
+
+    <!-- Contenido de la página - Final  -->
+
+    <!-- Contenedor para cargar el pie de página usando JavaScript -->
+    <div id="pie"></div>
+
+    <!-- Start Script -->
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="js/jquery-migrate-1.2.1.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/templatemo.js"></script>
+    <script src="js/custom.js"></script>
+    <!-- End Script -->
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            cargarFragmento("menu", "menu.html");
+            cargarFragmento("pie", "pie.html");
+        }); 
+    </script>
+
+</body>
+
+</html>
